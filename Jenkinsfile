@@ -5,7 +5,7 @@ pipeline {
         stage('Build server image') {
             steps {
                 script {
-                    sh "sleep 30"
+                    sh "bash ./test.sh"
                 }
             }
         }
