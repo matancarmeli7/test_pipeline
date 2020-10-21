@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label  "${env.AGENT_LABEL}"
+    }
     
     stages {
         stage('Build server image') {
