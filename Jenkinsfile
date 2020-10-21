@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label  "${env.AGENT_LABEL}"
+        label  "docker-engine"
     }
     
     stages {
