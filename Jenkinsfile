@@ -6,7 +6,6 @@ nodesByLabel('test1').each {
   nodes[it] = { ->
     node(it) {
       stage("docker-prune@${it}") {
-        //branch = sh(script:"df -h / | grep -iv Filesystem | awk '{print$5}' | awk -F % '{print1}'",returnStdout:true).trim()
         cmdFillFindPs = 'df -h / | grep -iv Filesystem | awk \'{print$5}\''
         runPs = sh(returnStdout: true, script: cmdFillFindPs).trim()
         runPs = runPs.split('%')
