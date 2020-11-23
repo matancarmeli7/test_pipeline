@@ -10,6 +10,11 @@ for (x in labels) {
         stage("docker-prune@${it}") {
           cmdFillFindPs = 'df -h / | grep -iv Filesystem | awk \'{print$5}\''
           sh 'echo ${label}'
+          if (label == 'test1'){
+            sh 'echo hi'
+          } else{
+            sh 'echo bi'
+          }
           //cmdFillFindPs = 'df -h /var/lib/containers | grep -iv Filesystem | awk \'{print$5}\''
           runPs = sh(returnStdout: true, script: cmdFillFindPs).trim()
           runPs = runPs.split('%')
