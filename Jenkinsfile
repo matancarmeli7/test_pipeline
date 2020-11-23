@@ -4,7 +4,7 @@ def nodes = [:]
 for (x in labels) {
   def label = x // Need to bind the label variable before the closure - can't do 'for (label in labels)
   // Create a map to pass in to the 'parallel' step so we can fire all the builds at once
-  nodesByLabel(label).each {
+  nodesByLabel('').each {
     nodes[it] = { ->
       node(it) {
         stage("docker-prune@${it}") {
