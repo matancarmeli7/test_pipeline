@@ -19,6 +19,9 @@ for (label in labels) {
               if (label == 'master'){
                 println "master using"
               }
+              else{
+                println "master not using"
+              }
               sh(returnStdout: true, script: "hostname").trim()
           }
         }
