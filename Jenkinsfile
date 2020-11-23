@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-def labels = ['master', 'test1'] // labels for Jenkins node types we will build on
+def labels = ['all'] // labels for Jenkins node types we will build on
 def nodes = [:]
 for (x in labels) {
   def label = x // Need to bind the label variable before the closure - can't do 'for (label in labels)
