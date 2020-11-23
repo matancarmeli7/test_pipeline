@@ -1,19 +1,17 @@
 #!/usr/bin/env groovy
 def labels = ['master', 'test1'] // labels for Jenkins node types we will build on
 def nodes = [:]
-for (label in labels) {
-  //def label = x // Need to bind the label variable before the closure - can't do 'for (label in labels)
+for (x in labels) {
+  def label = x // Need to bind the label variable before the closure - can't do 'for (label in labels)
   // Create a map to pass in to the 'parallel' step so we can fire all the builds at once
   nodesByLabel(label).each {
     nodes[it] = { ->
       node(it) {
         stage("docker-prune@${it}") {
-          cmdFillFindPs = 'df -h / | grep -iv Filesystem | awk \'{print$5}\''
-          sh 'echo ${label}'
           if (label == 'test1'){
-            sh 'echo hi'
+            cmdFillFindPs = 'df -h / | grep -iv Filesystem | awk \'{print$5}\''
           } else{
-            sh 'echo bi'
+            cmdFillFindPs = 'df -h /var/lib/containers | grep -iv Filesystem | awk \'{print$5}\''
           }
           //cmdFillFindPs = 'df -h /var/lib/containers | grep -iv Filesystem | awk \'{print$5}\''
           runPs = sh(returnStdout: true, script: cmdFillFindPs).trim()
