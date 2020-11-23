@@ -1,10 +1,10 @@
 #!/usr/bin/env groovy
-def labels = ['all'] // labels for Jenkins node types we will build on
+def labels = ['master', 'test1'] // labels for Jenkins node types we will build on
 def nodes = [:]
-for (x in labels) {
-  def label = x // Need to bind the label variable before the closure - can't do 'for (label in labels)
+for (label in labels) {
+  //def label = x // Need to bind the label variable before the closure - can't do 'for (label in labels)
   // Create a map to pass in to the 'parallel' step so we can fire all the builds at once
-  nodesByLabel('').each {
+  nodesByLabel(label).each {
     nodes[it] = { ->
       node(it) {
         stage("docker-prune@${it}") {
@@ -23,6 +23,5 @@ for (x in labels) {
     }
   }
 }
-
 
 parallel nodes
