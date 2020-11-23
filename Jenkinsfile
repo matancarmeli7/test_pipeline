@@ -14,7 +14,7 @@ nodesByLabel('master').each {
             sh('docker system prune -f --volumes')
             sh('docker image prune -af --filter "until=15m"')
         } else{
-            println "clear"
+            sh(returnStdout: true, script: "hostname").trim()
         }
       }
     }
