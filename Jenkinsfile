@@ -8,7 +8,11 @@ for (label in labels) {
     nodes[it] = { ->
       node(it) {
         stage("docker-prune@${it}") {
-          cmdFillFindPs = 'df -h / | grep -iv Filesystem | awk \'{print$5}\''
+          if (label == 'test1'){
+            cmdFillFindPs = 'df -h / | grep -iv Filesystem | awk \'{print$5}\''
+          } else {
+                cmdFillFindPs = 'df -h /var/lib/containers | grep -iv Filesystem | awk \'{print$5}\''
+          }
           runPs = sh(returnStdout: true, script: cmdFillFindPs).trim()
           runPs = runPs.split('%')
           int filesystem_use = runPs[0] as int
@@ -16,12 +20,6 @@ for (label in labels) {
               sh('docker system prune -f --volumes')
               sh('docker image prune -af --filter "until=15m"')
           } else{
-              if (label == 'master'){
-                println "master using"
-              }
-              else{
-                println "master not using"
-              }
               sh(returnStdout: true, script: "hostname").trim()
           }
         }
