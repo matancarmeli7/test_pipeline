@@ -8,8 +8,9 @@ for (label in labels) {
     nodes[it] = { ->
       node(it) {
         stage("docker-prune@${it}") {
-          //cmdFillFindPs = 'df -h / | grep -iv Filesystem | awk \'{print$5}\''
-          cmdFillFindPs = 'df -h /var/lib/containers | grep -iv Filesystem | awk \'{print$5}\''
+          cmdFillFindPs = 'df -h / | grep -iv Filesystem | awk \'{print$5}\''
+          sh 'echo ${label}'
+          //cmdFillFindPs = 'df -h /var/lib/containers | grep -iv Filesystem | awk \'{print$5}\''
           runPs = sh(returnStdout: true, script: cmdFillFindPs).trim()
           runPs = runPs.split('%')
           int filesystem_use = runPs[0] as int
