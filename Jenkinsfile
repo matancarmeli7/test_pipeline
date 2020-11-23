@@ -16,6 +16,9 @@ for (label in labels) {
               sh('docker system prune -f --volumes')
               sh('docker image prune -af --filter "until=15m"')
           } else{
+              if (label == 'master'){
+                println "master using"
+              }
               sh(returnStdout: true, script: "hostname").trim()
           }
         }
