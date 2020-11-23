@@ -2,7 +2,7 @@
 
 def nodes = [:]
 
-nodesByLabel('test1').each {
+nodesByLabel('master').each {
   nodes[it] = { ->
     node(it) {
       stage("docker-prune@${it}") {
