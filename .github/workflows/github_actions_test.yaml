@@ -9,10 +9,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: clone operator-test-playbooks repo
-        uses: actions/checkout@master
-        with:
-          repository: operator-framework/operator-test-playbooks
-      - name: Operator test
+      #- name: clone operator-test-playbooks repo
+      #  uses: actions/checkout@master
+      #  with:
+      #    repository: operator-framework/operator-test-playbooks
+      - name: create kind cluster
         run: |
           ls -l
