@@ -17,11 +17,14 @@ jobs:
           playbook: upstream/local.yml
           directory: ./
           options: |
-            -i localhost
+            -l localhost
             -e ansible_connection=local
             -e run_upstream=true
             -e run_remove_catalog_repo=false
             -e run_prepare_catalog_repo_upstream=false
             --tags reset,kind,kubectl,docker,base
+      - name: clone operator-test-playbooks repo
+        run: |
+          kubectl get pods -A
             
           
