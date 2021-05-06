@@ -23,7 +23,10 @@ jobs:
             -e run_remove_catalog_repo=false
             -e run_prepare_catalog_repo_upstream=false
             --tags reset,kind,kubectl,docker,base
-      - name: clone operator-test-playbooks repo
+      - name: create kind cluster 2
+        run: |
+          ansible-playbook upstream/local.yml -l localhost -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false -e run_prepare_catalog_repo_upstream=false --tags reset,kind,kubectl,docker,base
+      - name: check cluster
         run: |
           kubectl get pods -A
             
