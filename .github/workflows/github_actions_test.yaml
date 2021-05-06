@@ -7,12 +7,21 @@ jobs:
     name: "matan test CI"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      #- name: clone operator-test-playbooks repo
-      #  uses: actions/checkout@master
-      #  with:
-      #    repository: operator-framework/operator-test-playbooks
+      - name: clone operator-test-playbooks repo
+        uses: actions/checkout@master
+        with:
+          repository: operator-framework/operator-test-playbooks
       - name: create kind cluster
-        run: |
-          ls -l
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: upstream/local.yml
+          directory: ./
+          options: |
+            -i localhost
+            -e ansible_connection=local
+            -e run_upstream=true
+            -e run_remove_catalog_repo=false
+            -e run_prepare_catalog_repo_upstream=false
+            --tags reset,kind,kubectl,docker,base
+            
+          
