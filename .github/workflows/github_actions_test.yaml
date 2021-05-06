@@ -9,10 +9,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Check out my other private repo
+      - name: clone operator-test-playbooks repo
         uses: actions/checkout@master
         with:
-          repository: orgname/reponame
+          repository: operator-framework/operator-test-playbooks
       - name: Operator test
         run: |
           ls -l
