@@ -7,27 +7,13 @@ jobs:
     name: "matan test CI"
     runs-on: ubuntu-latest
     steps:
-      #- name: clone operator-test-playbooks repo
-      #  uses: actions/checkout@master
-      #  with:
-      #    repository: operator-framework/operator-test-playbooks
-      #- name: create kind cluster
-      #  uses: dawidd6/action-ansible-playbook@v2
-      #  with:
-      #    playbook: upstream/local.yml
-      #    directory: ./
-      #    options: |
-      #      -l localhost
-      #      -e ansible_connection=local
-      #      -e run_upstream=true
-      #      -e run_remove_catalog_repo=false
-      #      -e run_prepare_catalog_repo_upstream=false
-      #      --tags reset,kind,kubectl,docker,base
       - name: create kind cluster 2
         run: |
           ansible-pull -U https://github.com/operator-framework/operator-test-playbooks -C master -i localhost, -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false upstream/local.yml -e run_prepare_catalog_repo_upstream=false --tags reset,kind,kubectl,docker,base
       - name: check cluster
         run: |
+          kubectl apply -f https://raw.githubusercontent.com/IBM/ibm-block-csi-operator/master/deploy/installer/generated/ibm-block-csi-operator.yaml
+          kubectl apply -f https://raw.githubusercontent.com/IBM/ibm-block-csi-operator/master/deploy/crds/csi.ibm.com_v1_ibmblockcsi_cr.yaml
           kubectl get pods -A
             
           
