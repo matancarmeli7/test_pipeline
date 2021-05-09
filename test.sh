@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 set +o pipefail
 
 ACTION=${1-""}
