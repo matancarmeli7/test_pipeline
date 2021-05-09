@@ -12,7 +12,7 @@ jobs:
       - name: create kind cluster 2
         run: |
           ansible-pull -U https://github.com/operator-framework/operator-test-playbooks -C master -i localhost, -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false upstream/local.yml -e run_prepare_catalog_repo_upstream=false --tags reset
-          ansible-pull -U https://github.com/operator-framework/operator-test-playbooks -C master ^C localhost, -e ansible_connection=local upstream/local.yml -e run_upstream=true -e image_protocol='docker://' -e container_tool=podman -e run_prepare_catalog_repo_upstream=false -e operator_dir=upstream-community-operators/ibm-block-csi-operator-community -e operator_version=1.5.0 --tags pure_test -e operator_channel_force=optest -e strict_mode=true
+          ansible-pull -U https://github.com/operator-framework/operator-test-playbooks -C master -i localhost, -e ansible_connection=local upstream/local.yml -e run_upstream=true -e image_protocol='docker://' -e container_tool=podman -e run_prepare_catalog_repo_upstream=false -e operator_dir=upstream-community-operators/ibm-block-csi-operator-community -e operator_version=1.5.0 --tags pure_test -e operator_channel_force=optest -e strict_mode=true
       #- name: kiwi / Full operator test
       #  env:
       #    OP_TEST_SCRIPT_URL: "https://raw.githubusercontent.com/operator-framework/operator-test-playbooks/master/upstream/test/test.sh"
