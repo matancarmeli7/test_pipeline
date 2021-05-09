@@ -3,16 +3,28 @@ on:
     branches:
     - main
 jobs:
-  test-csi:
+  CI-prerequisite:
+    name: "PR-traffic-light"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip yq
+  CI-csi:
     name: "matan test CI"
+    needs: CI-prerequisite
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: create kind cluster 2
         run: |
-          pwd
-          ls -l
+          which yq
           ansible-pull -U https://github.com/operator-framework/operator-test-playbooks -C master -i localhost, -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false upstream/local.yml -e run_prepare_catalog_repo_upstream=false --tags reset
           ansible-pull -U https://github.com/operator-framework/operator-test-playbooks -C master -i localhost, -e ansible_connection=local upstream/local.yml -e run_upstream=true -e image_protocol='docker://' -e container_tool=podman -e run_prepare_catalog_repo_upstream=false -e operator_dir=$PWD/upstream-community-operators/ibm-block-csi-operator-community -e operator_version=1.5.0 --tags pure_test -e operator_channel_force=optest -e strict_mode=true
       #- name: kiwi / Full operator test
