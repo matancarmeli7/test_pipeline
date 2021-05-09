@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - uses: FranzDiebold/github-env-vars-action@v2
       - name: create kind cluster 2
         run: |
           echo $CI_REPOSITORY_NAME
