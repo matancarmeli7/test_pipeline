@@ -16,7 +16,7 @@ jobs:
         env:
           OP_TEST_SCRIPT_URL: "https://raw.githubusercontent.com/operator-framework/operator-test-playbooks/master/upstream/test/test.sh"
         run: |
-          bash <(curl -sL $OP_TEST_SCRIPT_URL) kiwi "deploy/olm-catalog/ibm-block-csi-operator-community/1.5.0"
+          bash <(curl -sL $OP_TEST_SCRIPT_URL) kiwi "upstream-community-operators/ibm-block-csi-operator-community/1.5.0"
       #- name: check cluster
       #  run: |
       #    kubectl apply -f https://raw.githubusercontent.com/IBM/ibm-block-csi-operator/master/deploy/installer/generated/ibm-block-csi-operator.yaml
