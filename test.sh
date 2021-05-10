@@ -5,7 +5,7 @@ export csv_version=`yq .channels[0].currentCSV upstream-community-operators/ibm-
 export csv_version=`echo ${csv_version//ibm-block-csi-operator.v}`
 export csv_version=`echo ${csv_version//\"}`
 export csv_file=~/work/$CI_REPOSITORY_NAME/$CI_REPOSITORY_NAME/upstream-community-operators/ibm-block-csi-operator-community/$csv_version/ibm-block-csi-operator.v$csv_version.clusterserviceversion.yaml
-export wanted_image=ibmcom/ibm-block-csi-operator:1.5.0
+export wanted_image=ibmcom/ibm-block-csi-operator:1.6.0
 export current_image=`yq .metadata.annotations.containerImage $csv_file`
 export current_image=`echo ${current_image//\"}`
 
