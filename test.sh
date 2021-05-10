@@ -1,8 +1,8 @@
 #!/bin/bash -xe
 set +o pipefail
 
-export wanted_image=ibmcom/ibm-block-csi-operator:1.6.0
-export ~/work/$CI_REPOSITORY_NAME/$CI_REPOSITORY_NAME/upstream-community-operators/ibm-block-csi-operator-community/1.5.0/ibm-block-csi-operator.v1.5.0.clusterserviceversion.yaml
+export wanted_image=ibmcom/ibm-block-csi-operator:1.4.0
+export csv_file=~/work/$CI_REPOSITORY_NAME/$CI_REPOSITORY_NAME/upstream-community-operators/ibm-block-csi-operator-community/1.5.0/ibm-block-csi-operator.v1.5.0.clusterserviceversion.yaml
 export current_image=`yq .metadata.annotations.containerImage $csv_file`
 export current_image=`echo ${current_image//\"}`
 
