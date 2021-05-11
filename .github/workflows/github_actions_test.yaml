@@ -30,7 +30,7 @@ jobs:
         env:
           operator_image: ${{ needs.operator_image_build.outputs.operator_image }}
         run: |
-          ./test.sh
+          scripts/ci/op-test kiwi "upstream-community-operators/ibm-block-csi-operator-community/1.5.0"
       - name: check cluster
         run: |
           kubectl get pods -A
