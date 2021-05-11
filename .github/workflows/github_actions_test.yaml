@@ -3,15 +3,15 @@ on:
     branches:
     - main
 jobs:
-  operator_image_build:
-    name: "set env"
-    runs-on: ubuntu-latest
-    outputs:
-      operator_image: "csiblock1/ibm-block-csi-operator-amd64:new"
-          
+  #perator_image_build:
+  # name: "set env"
+  # runs-on: ubuntu-latest
+  # outputs:
+  #   operator_image: "csiblock1/ibm-block-csi-operator-amd64:new"
+
   CI-csi:
     name: "matan test CI"
-    needs: operator_image_build
+    #eeds: operator_image_build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -25,7 +25,8 @@ jobs:
       - uses: FranzDiebold/github-env-vars-action@v2
       - name: kiwi / Full operator test
         env:
-          operator_image: ${{ needs.operator_image_build.outputs.operator_image }}
+          operator_image: "csiblock1/ibm-block-csi-operator-amd64:new"
+#         operator_image: ${{ needs.operator_image_build.outputs.operator_image }}
         run: |
           ./test.sh
       - name: check cluster
