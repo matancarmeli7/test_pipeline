@@ -61,7 +61,7 @@ echo "::set-output name=op_test_recreate::${OP_TEST_RECREATE}"
 
 for l in $(echo $OP_TEST_LABELS);do
   echo "Checking label '$l' ..."
-  [[ "$l" = "allow/ci-changes" ]] && export OP_TEST_ALLOW_CI_CHANGES=1
+  export OP_TEST_ALLOW_CI_CHANGES=1
   [[ "$l" = "allow/operator-version-overwrite" ]] && export OP_TEST_VER_OVERWRITE=1
   [[ "$l" = "allow/operator-recreate" ]] && export OP_TEST_OP_DELETE=1 && export OP_TEST_RECREATE=1
   [[ "$l" = "allow/serious-changes-to-existing" ]] && export OP_TEST_ALLOW_SERIOUS_CHANGES=1
