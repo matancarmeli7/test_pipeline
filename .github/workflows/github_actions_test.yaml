@@ -42,6 +42,7 @@ jobs:
      wanted_operator_image: "${{ steps.environment_setup.outputs.wanted_operator_image }}"
      csv_file: "${{ steps.environment_setup.outputs.csv_file }}"
      community_operators_path: "${{ steps.environment_setup.outputs.community_operators_path }}"
+     repository_path: "${{ steps.environment_setup.outputs.repository_path }}"
 
   CI-csi-kiwi:
     name: "matan test CI"
@@ -51,11 +52,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - id: update_csv
-        uses: matancarmeli7/test_pipeline@v3
+        uses: matancarmeli7/test_pipeline@v1 
         with:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
+          repository_path: ${{ needs.prepare_env.outputs.repository_path }}
       - name: kiwi / Full operator test
         run: |
           echo "kiwi ${{ needs.prepare_env.outputs.community_operators_path }}"
