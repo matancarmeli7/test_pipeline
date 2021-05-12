@@ -52,7 +52,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - id: update_csv
-        uses: matancarmeli7/test_pipeline@v1 
+        uses: matancarmeli7/test_pipeline@v4
         with:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
