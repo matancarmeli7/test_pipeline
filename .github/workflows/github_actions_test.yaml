@@ -2,8 +2,8 @@ name: Operator test
 
 env:
   OP_TEST_DEBUG: 1
-  OP_TEST_CONTAINER_OPT: "-t"
-  #GODEBUG: x509ignoreCN=0
+  #OP_TEST_CONTAINER_OPT: "-t"
+  GODEBUG: x509ignoreCN=0
 on:
   push:
     branches:
