@@ -48,7 +48,7 @@ jobs:
           OP_TEST_REMOVED_FILES: "${{ steps.files.outputs.removed }}"
         run: |
           echo "global labels $OP_TEST_LABELS"
-          scripts/ci/actions-env
+#          scripts/ci/actions-env
     outputs:
       op_test_ready: "${{ steps.op-traffic-light.outputs.op_test_ready }}"
       op_release_ready: "${{ steps.op-traffic-light.outputs.op_release_ready }}"
@@ -60,14 +60,14 @@ jobs:
   test-kiwi:
     name: "kiwi / Full operator test"
     needs: pr-check
-    if: needs.pr-check.outputs.op_test_ready == '1'
+    #if: needs.pr-check.outputs.op_test_ready == '1'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Operator test
-        env:
-          OP_TEST_LABELS: "${{ join(github.event.pull_request.labels.*.name, ' ') }}"
+        #env:
+        #  OP_TEST_LABELS: "${{ join(github.event.pull_request.labels.*.name, ' ') }}"
         run: |
-          echo "kiwi ${{ needs.pr-check.outputs.op_test_stream }}/${{ needs.pr-check.outputs.op_test_name }}/${{ needs.pr-check.outputs.op_test_version }}"
-          scripts/ci/op-test kiwi "${{ needs.pr-check.outputs.op_test_stream }}/${{ needs.pr-check.outputs.op_test_name }}/${{ needs.pr-check.outputs.op_test_version }}"
+          echo "kiwi upstream-community-operators/ibm-block-csi-operator-community/1.6.0"
+          scripts/ci/op-test kiwi "upstream-community-operators/ibm-block-csi-operator-community/1.6.0"
