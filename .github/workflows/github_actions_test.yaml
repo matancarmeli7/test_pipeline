@@ -17,40 +17,17 @@ jobs:
    outputs:
      operator_image: "csiblock1/ibm-block-csi-operator-amd64:new"
 
-  prepare_env:
-   name: "prepare_env"
-   needs: operator_image
-   runs-on: ubuntu-latest
-   steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: python -m pip install --upgrade pip yq
-      - uses: FranzDiebold/github-env-vars-action@v2
-      - name: prepare_env
-        id: environment_setup
-        env:
-          operator_image: ${{ needs.operator_image_build.outputs.operator_image }}
-        run: |
-          ./prepare_env.sh
-   outputs:
-     community_operators_path: "${{ steps.environment_setup.outputs.community_operators_path }}"
-
   CI-csi-kiwi:
     name: "matan test CI"
-    needs: prepare_env
+    needs: operator_image_build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - id: prepare_env
+        uses: matancarmeli7/test_pipeline@v1 
       - name: kiwi / Full operator test
         run: |
-          echo "kiwi ${{ needs.prepare_env.outputs.community_operators_path }}"
-          scripts/ci/op-test kiwi "${{ needs.prepare_env.outputs.community_operators_path }}"
+          echo "kiwi ${{ steps.prepare_env.outputs.community_operators_path }}"
+          scripts/ci/op-test kiwi "${{ steps.prepare_env.outputs.community_operators_path }}"
       - name: check cluster
         run: |
           kubectl get pods -A
