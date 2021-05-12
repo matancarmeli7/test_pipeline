@@ -10,11 +10,19 @@ inputs:
   csv_file:
     description: 'The csv yaml file path'
     required: true
+  repository_path:
+    description: 'The path that all the repo files are'
+    required: true
 runs:
   using: "composite"
   steps: 
     - name: update_csv
       id: environment_setup
       run: |
-        sed -i "s+${{ inputs.current_operator_image }}+${{ inputs.wanted_operator_image }}+g" ${{ inputs.csv_file }}
+        build/ci/update_csv.sh
       shell: bash
+      env:
+        current_image: ${{ inputs.current_operator_image }}
+        wanted_image: ${{ inputs.wanted_operator_image }}
+        csv_file: ${{ inputs.csv_file }}
+        repository_path: ${{ inputs.repository_path }}
