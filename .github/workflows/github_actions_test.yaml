@@ -45,8 +45,8 @@ jobs:
     needs: prepare_env
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      #- name: Checkout code
+      #  uses: actions/checkout@v2
       - name: kiwi / Full operator test
         run: |
           echo "kiwi ${{ needs.prepare_env.outputs.community_operators_path }}"
