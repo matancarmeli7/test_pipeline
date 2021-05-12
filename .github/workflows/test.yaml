@@ -38,24 +38,24 @@ jobs:
           python-version: '3.x'
       - name: Install dependencies
         run: python -m pip install --upgrade pip yq
-      - name: Operator test
-        id: op-traffic-light
-        env:
-          OP_TEST_LABELS: "${{ join(github.event.pull_request.labels.*.name, ' ') }}"
-          OP_TEST_MODIFIED_FILES: "${{ steps.files.outputs.modified }}"
-          OP_TEST_ADDED_MODIFIED_FILES: "${{ steps.files.outputs.added_modified }}"
-          OP_TEST_RENAMED_FILES: "${{ steps.files.outputs.renamed }}"
-          OP_TEST_REMOVED_FILES: "${{ steps.files.outputs.removed }}"
-        run: |
-          echo "global labels $OP_TEST_LABELS"
-#          scripts/ci/actions-env
-    outputs:
-      op_test_ready: "${{ steps.op-traffic-light.outputs.op_test_ready }}"
-      op_release_ready: "${{ steps.op-traffic-light.outputs.op_release_ready }}"
-      op_test_stream: "${{ steps.op-traffic-light.outputs.op_test_stream }}"
-      op_test_name: "${{ steps.op-traffic-light.outputs.op_test_name }}"
-      op_test_version: "${{ steps.op-traffic-light.outputs.op_test_version }}"
-      op_test_ci_yaml_only: "${{ steps.op-traffic-light.outputs.op_test_ci_yaml_only }}"
+      #- name: Operator test
+      #  id: op-traffic-light
+      #  env:
+      #    OP_TEST_LABELS: "${{ join(github.event.pull_request.labels.*.name, ' ') }}"
+      #    OP_TEST_MODIFIED_FILES: "${{ steps.files.outputs.modified }}"
+      #    OP_TEST_ADDED_MODIFIED_FILES: "${{ steps.files.outputs.added_modified }}"
+      #    OP_TEST_RENAMED_FILES: "${{ steps.files.outputs.renamed }}"
+      #    OP_TEST_REMOVED_FILES: "${{ steps.files.outputs.removed }}"
+      #  run: |
+      #    echo "global labels $OP_TEST_LABELS"
+      #    scripts/ci/actions-env
+    #outputs:
+    #  op_test_ready: "${{ steps.op-traffic-light.outputs.op_test_ready }}"
+    #  op_release_ready: "${{ steps.op-traffic-light.outputs.op_release_ready }}"
+    #  op_test_stream: "${{ steps.op-traffic-light.outputs.op_test_stream }}"
+    #  op_test_name: "${{ steps.op-traffic-light.outputs.op_test_name }}"
+    #  op_test_version: "${{ steps.op-traffic-light.outputs.op_test_version }}"
+    #  op_test_ci_yaml_only: "${{ steps.op-traffic-light.outputs.op_test_ci_yaml_only }}"
 
   test-kiwi:
     name: "kiwi / Full operator test"
