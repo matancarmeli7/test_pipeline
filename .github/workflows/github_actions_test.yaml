@@ -1,7 +1,7 @@
 name: Operator test
 
 env:
-  #OP_TEST_DEBUG: 1
+  OP_TEST_DEBUG: 1
   OP_TEST_CONTAINER_OPT: "-t"
   #OP_TEST_DRY_RUN: 0
   GODEBUG: x509ignoreCN=0
