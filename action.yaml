@@ -2,18 +2,19 @@ name: 'update the csv custom parameters'
 description: 'update the operator image and minimume kubernetes version values in the csv yaml file'
 inputs:
   current_operator_image:
-    description: 'The folder to copy the files to'
+    description: 'The current operator image in the csv yaml file'
     required: true
   wanted_operator_image:
-    description: 'The folder to copy the files to'
+    description: 'The wanted operator image to be in the csv yaml file'
     required: true
   csv_file:
-    description: 'The folder to copy the files to'
+    description: 'The csv yaml file path'
     required: true
 runs:
   using: "composite"
   steps: 
-    - name: prepare_env
+    - name: update_csv
       id: environment_setup
       run: |
         sed -i "s+${{ inputs.current_operator_image }}+${{ inputs.wanted_operator_image }}+g" ${{ inputs.csv_file }}
+      shell: bash
