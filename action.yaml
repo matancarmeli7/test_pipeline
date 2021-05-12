@@ -1,24 +1,19 @@
-name: 'prepare operator test env'
-description: 'prepare operator test environement variables and update the files'
-outputs:
-  community_operators_path: 
-    description: "Number of files copied"
-    value: ${{ steps.environment_setup.outputs.community_operators_path }}
+name: 'update the csv custom parameters'
+description: 'update the operator image and minimume kubernetes version values in the csv yaml file'
+inputs:
+  current_operator_image:
+    description: 'The folder to copy the files to'
+    required: true
+  wanted_operator_image:
+    description: 'The folder to copy the files to'
+    required: true
+  csv_file:
+    description: 'The folder to copy the files to'
+    required: true
 runs:
   using: "composite"
   steps: 
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: python -m pip install --upgrade pip yq
-    - uses: FranzDiebold/github-env-vars-action@v2
     - name: prepare_env
       id: environment_setup
-      env:
-        operator_image: ${{ needs.operator_image_build.outputs.operator_image }}
       run: |
-        ./prepare_env.sh
+        sed -i "s+${{ inputs.current_operator_image }}+${{ inputs.wanted_operator_image }}+g" ${{ inputs.csv_file }}

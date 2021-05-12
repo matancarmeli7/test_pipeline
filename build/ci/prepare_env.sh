@@ -12,6 +12,7 @@ export current_image=`yq .metadata.annotations.containerImage $csv_file`
 export current_image=`echo ${current_image//\"}`
 export community_operators_path=upstream-community-operators/ibm-block-csi-operator-community/$csv_version
 
-sed -i "s+$current_image+$wanted_image+g" $csv_file
-
+echo "::set-output name=current_operator_image::${current_image}"
+echo "::set-output name=wanted_operator_image::${wanted_image}"
+echo "::set-output name=csv_file::${csv_file}"
 echo "::set-output name=community_operators_path::${community_operators_path}"
