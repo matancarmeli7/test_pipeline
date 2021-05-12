@@ -10,7 +10,7 @@ export k8s_version=`echo ${k8s_version//\"}`
 export wanted_image=$operator_image
 export current_image=`yq .metadata.annotations.containerImage $csv_file`
 export current_image=`echo ${current_image//\"}`
-export community_operators_path=community-operators/ibm-block-csi-operator-community/$csv_version
+export community_operators_path=upstream-community-operators/ibm-block-csi-operator-community/$csv_version
 
 sed -i "s+$current_image+$wanted_image+g" $csv_file
 
