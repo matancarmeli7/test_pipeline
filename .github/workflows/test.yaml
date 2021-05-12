@@ -1,0 +1,13 @@
+on:
+  push:
+    branches:
+    - matan-test
+jobs:
+  CI-csi:
+    name: "matan test CI"
+    runs-on: ubuntu-latest
+    steps:
+      - name: kiwi / Full operator test
+        shell: 'script -q -e -c "bash {0}"'
+        run: |
+          scripts/ci/op-test kiwi "upstream-community-operators/ibm-block-csi-operator-community/1.5.0"
