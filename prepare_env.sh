@@ -14,4 +14,4 @@ export community_operators_path=community-operators/ibm-block-csi-operator-commu
 
 sed -i "s+$current_image+$wanted_image+g" $csv_file
 
-echo '::set-output name=community_operators_path::$community_operators_path'
+echo "::set-output name=community_operators_path::${community_operators_path}"
