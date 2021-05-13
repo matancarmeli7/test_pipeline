@@ -4,7 +4,7 @@ env:
   OP_TEST_DEBUG: 1
   OP_TEST_CONTAINER_OPT: "-t"
 on:
-  push:
+  pull_request:
     branches:
     - main
 jobs:
