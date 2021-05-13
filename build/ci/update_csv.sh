@@ -1,7 +1,7 @@
 #!/bin/bash -xe
 set +o pipefail
 
-sed -i "s+$current_image+$wanted_image+g" $csv_file
+sed -i "s+$current_operator_image+$wanted_operator_image+g" $csv_file
 sed -i 's/.*minKubeVersion.*/  minKubeVersion: 1.19.0/' $csv_file
 
 mkdir $repository_path/upstream-community-operators/

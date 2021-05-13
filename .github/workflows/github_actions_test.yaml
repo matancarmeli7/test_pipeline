@@ -52,9 +52,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
@@ -71,9 +72,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
@@ -90,9 +92,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
@@ -109,9 +112,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
@@ -128,9 +132,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
@@ -147,9 +152,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
@@ -166,9 +172,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
@@ -185,9 +192,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
@@ -204,9 +212,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - id: update_csv
-        uses: matancarmeli7/test_pipeline@v4
-        with:
+      - name: update_csv
+        run: |
+          build/ci/update_csv.sh
+        env:
           current_operator_image: ${{ needs.prepare_env.outputs.current_operator_image }}
           wanted_operator_image: ${{ needs.prepare_env.outputs.wanted_operator_image }}
           csv_file: ${{ needs.prepare_env.outputs.csv_file }}
