@@ -16,6 +16,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install gh
           which gh
+          git config --global user.email csi.block1@il.ibm.com
+          git config --global user.name csiblock
    outputs:
      gh_path: "/usr/bin/gh"
 
@@ -24,12 +26,5 @@ jobs:
    needs: operator_image_build
    runs-on: ubuntu-latest
    steps:
-      #- name: Cache Docker layers
-      #  uses: actions/cache@v2
-      #  with:
-      #    path: ${{ needs.operator_image_build.outputs.gh_path }}
-      #    key: ${{ runner.os }}-gh-${{ github.sha }}
-      #    restore-keys: |
-      #      ${{ runner.os }}-gh-
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
