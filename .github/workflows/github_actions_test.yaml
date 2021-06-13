@@ -18,8 +18,7 @@ jobs:
           which gh
           git config --global user.email csi.block1@il.ibm.com
           git config --global user.name csiblock
-   outputs:
-     gh_path: "/usr/bin/gh"
+          cat ~/.gitconfig
 
   use_gh:
    name: "use gh"
