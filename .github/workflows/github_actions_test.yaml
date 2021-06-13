@@ -29,8 +29,5 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/runner/.gitconfig
-          key: ${{ runner.os }}-gitconfig-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-gitconfig-
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
