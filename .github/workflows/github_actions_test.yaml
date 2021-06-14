@@ -8,6 +8,8 @@ jobs:
   operator_image_build:
    name: "set env"
    runs-on: ubuntu-latest
+   env:
+     hi: "bi"
    steps:
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -25,6 +27,7 @@ jobs:
           echo yq > dev-requirements.txt
           git config --global user.email csi.block1@il.ibm.com
           git config --global user.name csiblock
+          echo $hi
 #      - uses: actions/cache@v2
 #        with:
 #          path: ${{ env.pythonLocation }}
