@@ -21,7 +21,8 @@ jobs:
           sudo apt-get install gh
           which gh
           python -m pip install --upgrade pip yq
-          mv /home/runner/.local/bin/yq /usr/bin/yq
+          which yq
+#          mv /home/runner/.local/bin/yq /usr/bin/yq
 #      - name: Cache Docker layers
 #        uses: actions/cache@v2
 #        with:
