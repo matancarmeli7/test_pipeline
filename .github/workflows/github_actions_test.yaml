@@ -22,7 +22,7 @@ jobs:
           which gh
           python -m pip install --upgrade pip yq
           export yq_path=`which yq`
-          echo $python
+          echo yq > dev-requirements.txt
         env:
           python: ${{ env.pythonLocation }}
       - name: upload yq to artifactes
@@ -30,20 +30,28 @@ jobs:
         with:
           name: yq-binary
           path: /opt/hostedtoolcache/Python/3.9.5/x64/bin/yq
+      - uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
 #          sudo mv $yq_path /usr/bin/yq
 #      - name: Cache Docker layers
 #        uses: actions/cache@v2
 #        with:
 #          path: /home/runner
 #          key: ${{ runner.os }}-${{ hashFiles('.gitconfig') }}
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+#      - name: Setup tmate session
+#        uses: mxschmitt/action-tmate@v3
 
   use_gh:
    name: "use gh"
    needs: operator_image_build
    runs-on: ubuntu-latest
    steps:
+      - uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
       - name: dowanlod yq binary
         uses: actions/download-artifact@v2
         with:
