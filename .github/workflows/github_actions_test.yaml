@@ -23,10 +23,10 @@ jobs:
           python -m pip install --upgrade pip yq
           export yq_path=`which yq`
           echo yq > dev-requirements.txt
-      - uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
+#      - uses: actions/cache@v2
+#        with:
+#          path: ${{ env.pythonLocation }}
+#          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
 #          sudo mv $yq_path /usr/bin/yq
 #      - name: Cache Docker layers
 #        uses: actions/cache@v2
