@@ -29,6 +29,6 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/runner/
-          key: .gitconfig
+          key: *
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
