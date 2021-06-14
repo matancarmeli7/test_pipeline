@@ -23,16 +23,18 @@ jobs:
           python -m pip install --upgrade pip yq
           export yq_path=`which yq`
           echo yq > dev-requirements.txt
+          git config --global user.email csi.block1@il.ibm.com
+          git config --global user.name csiblock
 #      - uses: actions/cache@v2
 #        with:
 #          path: ${{ env.pythonLocation }}
 #          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
 #          sudo mv $yq_path /usr/bin/yq
-#      - name: Cache Docker layers
-#        uses: actions/cache@v2
-#        with:
-#          path: /home/runner
-#          key: ${{ runner.os }}-${{ hashFiles('.gitconfig') }}
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /home/runner
+          key: /home/runner-${{ hashFiles('**/.gitconfig') }}
 #      - name: Setup tmate session
 #        uses: mxschmitt/action-tmate@v3
 
@@ -45,9 +47,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - uses: actions/cache@v2
+      - name: Cache Docker layers
+        uses: actions/cache@v2
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
+          path: /home/runner
+          key: /home/runner-${{ hashFiles('**/.gitconfig') }}
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
