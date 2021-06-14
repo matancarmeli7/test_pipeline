@@ -20,16 +20,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install gh
           which gh
-          python -m pip install --upgrade pip yq
-          export yq_path=`which yq`
-          sudo mv $yq_path /usr/bin/yq
+          sudo snap install yq
+          which yq
+#          python -m pip install --upgrade pip yq
+#          export yq_path=`which yq`
+#          sudo mv $yq_path /usr/bin/yq
 #      - name: Cache Docker layers
 #        uses: actions/cache@v2
 #        with:
 #          path: /home/runner
 #          key: ${{ runner.os }}-${{ hashFiles('.gitconfig') }}
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+#      - name: Setup tmate session
+#        uses: mxschmitt/action-tmate@v3
 
   use_gh:
    name: "use gh"
