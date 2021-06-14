@@ -23,13 +23,6 @@ jobs:
           python -m pip install --upgrade pip yq
           export yq_path=`which yq`
           echo yq > dev-requirements.txt
-        env:
-          python: ${{ env.pythonLocation }}
-      - name: upload yq to artifactes
-        uses: actions/upload-artifact@v2
-        with:
-          name: yq-binary
-          path: /opt/hostedtoolcache/Python/3.9.5/x64/bin/yq
       - uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
@@ -56,10 +49,5 @@ jobs:
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
-      - name: dowanlod yq binary
-        uses: actions/download-artifact@v2
-        with:
-          name: yq-binary
-          path: /home/runner/
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
