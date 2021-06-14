@@ -22,7 +22,7 @@ jobs:
           which gh
           python -m pip install --upgrade pip yq
           export yq_path=`which yq`
-          mv $yq_path /usr/bin/yq
+          sudo mv $yq_path /usr/bin/yq
 #      - name: Cache Docker layers
 #        uses: actions/cache@v2
 #        with:
