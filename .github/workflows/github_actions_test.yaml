@@ -28,6 +28,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
-          path: /home/runner/.gitconfig
+          path: /home/runner/
+          key: .gitconfig
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
