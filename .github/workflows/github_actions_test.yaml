@@ -20,10 +20,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install gh
           which gh
-          sudo snap install yq
-          which yq
-#          python -m pip install --upgrade pip yq
-#          export yq_path=`which yq`
+          python -m pip install --upgrade pip yq
+          export yq_path=`which yq`
+      - name: upload yq to artifactes
+        uses: actions/upload-artifact@v2
+        with:
+          name: yq-binary
+          path: /opt/hostedtoolcache/Python/3.9.5/x64/bin/yq
 #          sudo mv $yq_path /usr/bin/yq
 #      - name: Cache Docker layers
 #        uses: actions/cache@v2
@@ -38,5 +41,10 @@ jobs:
    needs: operator_image_build
    runs-on: ubuntu-latest
    steps:
+      - name: dowanlod yq binary
+        uses: actions/download-artifact@v2
+        with:
+          name: yq-binary
+          path: /usr/bin/yq
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
