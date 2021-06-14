@@ -29,6 +29,6 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/runner
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/.gitconfig') }}
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
