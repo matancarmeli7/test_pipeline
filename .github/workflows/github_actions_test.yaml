@@ -8,8 +8,6 @@ jobs:
   operator_image_build:
    name: "set env"
    runs-on: ubuntu-latest
-   env:
-     matan: "hi"
    steps:
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -24,9 +22,9 @@ jobs:
           which gh
           python -m pip install --upgrade pip yq
           export yq_path=`which yq`
-          echo $mato
+          echo $python
         env:
-          mato: ${{ env.matan }}
+          python: ${{ env.pythonLocation }}
       - name: upload yq to artifactes
         uses: actions/upload-artifact@v2
         with:
