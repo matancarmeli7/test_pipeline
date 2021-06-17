@@ -8,8 +8,6 @@ jobs:
   operator_image_build:
    name: "set env"
    runs-on: ubuntu-latest
-   env:
-     hi: "bi"
    steps:
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -17,43 +15,24 @@ jobs:
           python-version: '3.x'
       - name: install gh
         run: |
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
-          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-          sudo apt-get update
-          sudo apt-get install gh
-          which gh
-          python -m pip install --upgrade pip yq
-          export yq_path=`which yq`
-          echo yq > dev-requirements.txt
           git config --global user.email csi.block1@il.ibm.com
           git config --global user.name csiblock
-          echo $hi
-#      - uses: actions/cache@v2
-#        with:
-#          path: ${{ env.pythonLocation }}
-#          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
-#          sudo mv $yq_path /usr/bin/yq
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /home/runner
-          key: /home/runner-${{ hashFiles('**/.gitconfig') }}
-#      - name: Setup tmate session
-#        uses: mxschmitt/action-tmate@v3
-
-  use_gh:
-   name: "use gh"
-   needs: operator_image_build
-   runs-on: ubuntu-latest
-   steps:
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /home/runner
-          key: /home/runner-${{ hashFiles('**/.gitconfig') }}
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
+
+  #use_gh:
+  # name: "use gh"
+  # needs: operator_image_build
+  # runs-on: ubuntu-latest
+  # steps:
+  #    - name: Set up Python
+  #      uses: actions/setup-python@v2
+  #      with:
+  #        python-version: '3.x'
+  #    - name: Cache Docker layers
+  #      uses: actions/cache@v2
+  #      with:
+  #        path: /home/runner
+  #        key: /home/runner-${{ hashFiles('**/.gitconfig') }}
+  #    - name: Setup tmate session
+  #      uses: mxschmitt/action-tmate@v3
