@@ -22,9 +22,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: gitconfig-file
-          path: /home/runner/.gitconfig
-#            /home/runner/.gitconfig
-#            /snap/bin/yq
+          path: |
+            .gitconfig
+            /snap/bin/yq
 
   use_gh:
    name: "use gh"
