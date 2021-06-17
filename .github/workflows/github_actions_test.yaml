@@ -17,22 +17,24 @@ jobs:
         run: |
           git config --global user.email csi.block1@il.ibm.com
           git config --global user.name csiblock
+          sudo snap install yq
+      - name: Save gitconfig file
+        uses: actions/upload-artifact@v2
+        with:
+          name: gitconfig-file
+          path: |
+            /home/runner/.gitconfig
+            /snap/bin/yq
+
+  use_gh:
+   name: "use gh"
+   needs: operator_image_build
+   runs-on: ubuntu-latest
+   steps:
+      - name: Retrieve gitconfig file
+        uses: actions/download-artifact@v2
+        with:
+          name: gitconfig-file
+          path: /home/runner
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-
-  #use_gh:
-  # name: "use gh"
-  # needs: operator_image_build
-  # runs-on: ubuntu-latest
-  # steps:
-  #    - name: Set up Python
-  #      uses: actions/setup-python@v2
-  #      with:
-  #        python-version: '3.x'
-  #    - name: Cache Docker layers
-  #      uses: actions/cache@v2
-  #      with:
-  #        path: /home/runner
-  #        key: /home/runner-${{ hashFiles('**/.gitconfig') }}
-  #    - name: Setup tmate session
-  #      uses: mxschmitt/action-tmate@v3
