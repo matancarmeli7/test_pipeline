@@ -23,7 +23,7 @@ jobs:
         with:
           name: gitconfig-file
           path: |
-            .gitconfig
+            /home/runner/.gitconfig
             /snap/bin/yq
 
   use_gh:
@@ -35,6 +35,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: gitconfig-file
-          path: /home/runner
+          path: /
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
