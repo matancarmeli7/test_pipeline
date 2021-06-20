@@ -25,8 +25,6 @@ jobs:
           path: |
             /home/runner/.gitconfig
             /snap/bin/yq
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
 
   use_gh:
    name: "use gh"
@@ -42,5 +40,6 @@ jobs:
         run: |
           mv /home/runner/home/runner/.gitconfig /home/runner/.gitconfig
           sudo mv /home/runner/snap/bin/yq /snap/bin/yq
+          sudo chmod 777 /snap/bin/yq
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
