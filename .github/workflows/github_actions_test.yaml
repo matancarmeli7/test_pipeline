@@ -35,6 +35,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: gitconfig-file
-          path: /
+          path: /home/runner
+      - name: move downloaded files to original paths
+        run: |
+          mv /home/runner/home/runner/.gitconfig /home/runner/.gitconfig
+          sudo mv /home/runner/snap/bin/yq /snap/bin/yq
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
