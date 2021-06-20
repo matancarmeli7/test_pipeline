@@ -32,12 +32,6 @@ jobs:
         with:
           name: gitconfig-file
           path: /home/runner
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-      - name: move downloaded files to original paths
-        run: |
-          mv /home/runner/home/runner/.gitconfig /home/runner/.gitconfig
-          mv /home/runner/home/runner/.bashrc /home/runner/.bashrc
       - name: check yq
         run: |
           yq
