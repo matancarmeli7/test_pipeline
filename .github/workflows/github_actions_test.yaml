@@ -37,7 +37,6 @@ jobs:
       - name: check yq
         shell: bash -l {0}
         run: |
-#          source /home/runner/.bashrc
           yq
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
