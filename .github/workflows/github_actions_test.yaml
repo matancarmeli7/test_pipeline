@@ -25,6 +25,8 @@ jobs:
           path: |
             /home/runner/.gitconfig
             /snap/bin/yq
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
 
   use_gh:
    name: "use gh"
