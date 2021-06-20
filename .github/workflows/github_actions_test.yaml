@@ -14,7 +14,7 @@ jobs:
           git config --global user.email csi.block1@il.ibm.com
           git config --global user.name csiblock
           echo $'yq() {\n  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"\n}' >> /home/runner/.bashrc
-          echo $'yq() {\n  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"\n}' >> /home/runner/.bash_profile
+#          echo $'yq() {\n  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"\n}' >> /home/runner/.bash_profile
       - name: Save gitconfig file
         uses: actions/upload-artifact@v2
         with:
@@ -36,6 +36,7 @@ jobs:
           path: /home/runner
       - name: check yq
         run: |
+          source /home/runner/.bashrc
           yq
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
