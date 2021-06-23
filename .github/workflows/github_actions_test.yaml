@@ -9,6 +9,8 @@ jobs:
    name: "set env"
    runs-on: ubuntu-latest
    steps:
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: install gh
         run: |
           git config --global user.email csi.block1@il.ibm.com
