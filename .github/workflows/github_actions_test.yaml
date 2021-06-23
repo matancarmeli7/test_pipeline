@@ -3,14 +3,19 @@ name: Operator test
 on:
   push:
     branches:
-    - main
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
 jobs:
   operator_image_build:
    name: "set env"
    runs-on: ubuntu-latest
    steps:
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        run: echo ${{ github.ref }}
       - name: install gh
         run: |
           git config --global user.email csi.block1@il.ibm.com
